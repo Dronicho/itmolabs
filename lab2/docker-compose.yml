@@ -1,0 +1,24 @@
+version: '3'
+
+services:
+  server:
+    container_name: message-server-container
+    image: message-server
+    environment:
+      - DATABASE_URL=sqlite://data.db
+    build:
+      context: server
+      dockerfile: Dockerfile
+    ports:
+      - 8080:8080
+    restart: always
+  client:
+    container_name: message-client-container
+    image: message-client
+    build:
+      context: client
+      dockerfile: Dockerfile
+    ports:
+      - 3000:80
+    restart: always
+    
